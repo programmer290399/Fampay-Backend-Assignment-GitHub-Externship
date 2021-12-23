@@ -149,3 +149,10 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": crontab(minute=f"*/{CHECK_INTV}"),
     },
 }
+
+
+# For Paginated Response
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 5,
+}
