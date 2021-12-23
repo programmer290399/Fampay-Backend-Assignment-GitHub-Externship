@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from celery.schedules import crontab
+from dotenv import load_dotenv, find_dotenv
+
+# Add .env variables anywhere before SECRET_KEY
+load_dotenv(find_dotenv())
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -130,7 +135,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # Youtube API related stuff
-DEVELOPER_KEY = os.environ["API_KEY"]
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 SEARCH_QUERY = "Cricket"
@@ -150,8 +154,15 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
-
+# For paginated response
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
 }
+
+# Loading API KEYS
+NUM_KEYS = int(os.environ["NUM_KEYS"])
+API_KEYS = dict()
+for key_no in range(1, NUM_KEYS + 1):
+    key_name = f"API_KEY_{key_no}"
+    API_KEYS[key_name] = os.environ[key_name]
