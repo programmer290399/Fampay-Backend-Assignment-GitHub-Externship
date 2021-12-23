@@ -13,7 +13,6 @@ from Fampay_Backend_Assignment.settings import (
 def youtube_search(query, check_int, max_results):
     for key_num in range(1, NUM_KEYS + 1):
         DEVELOPER_KEY = API_KEYS[f"API_KEY_{key_num}"]
-        print(f"Using Key:{DEVELOPER_KEY}")
         try:
             youtube = build(
                 YOUTUBE_API_SERVICE_NAME,
