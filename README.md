@@ -61,6 +61,13 @@ $ redis-server
 # In a new terminal tab/window navigate to the same path as before and
 # run the django server using the same env
 $ cd Fampay_Backend_Assignment/
+# BEFORE RUNNING THE FOLLOWING TWO COMMANDS
+# Place the .env file on the same level as manage.py
+# With the following syntax:
+# NUM_KEYS=<Number of keys you want to use>
+# API_KEY_1=<Your First API Key>
+# API_KEY_2=<Your Second API Key>
+# Ans so on, add all your keys in it.
 $ python manage.py migrate
 $ python manage.py runserver
 # Similarly in the same working directory as above run the following 
