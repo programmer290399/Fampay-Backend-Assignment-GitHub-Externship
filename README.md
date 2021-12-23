@@ -36,4 +36,35 @@ Without publishedAfter, it will give you cached results which will be too old
 
 ## How to Setup:
 
-## Demo:
+1. Using Source:
+
+
+```bash
+# Clone the repository
+$ git clone git@github.com:programmer290399/Fampay-Backend-Assignment-GitHub-Externship.git
+$ cd Fampay-Backend-Assignment-GitHub-Externship/
+# Create a virtual env and install python dependencies
+$ python3.7 -m venv .venv 
+$ . .venv/bin/activate
+$ pip install -r requirements.txt 
+# Install Redis:
+# ---------------------------------------------------------
+# Run the next command only if using Debain based Distro: 
+$ sudo apt install redis-server 
+# Run the next command only if using Arch based Distro 
+$ sudo pacman -S redis
+# Run this command only if using a Mac
+$ brew install redis
+# ---------------------------------------------------------
+# Start redis server
+$ redis-server
+# In a new terminal tab/window navigate to the same path as before and
+# run the django server using the same env
+$ cd Fampay_Backend_Assignment/
+$ python manage.py migrate
+$ python manage.py runserver
+# Similarly in the same working directory as above run the following 
+# two commands in separate terminal/tabs
+$ celery -A Fampay_Backend_Assignment worker --loglevel=info
+$ celery -A Fampay_Backend_Assignment beat -l info
+```
