@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,8 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
     "youtube_rest_api",
+    "rest_framework",
     "django_celery_beat",
 ]
 
@@ -127,13 +128,24 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+
 # Youtube API related stuff
 DEVELOPER_KEY = os.environ["API_KEY"]
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
+SEARCH_QUERY = "Cricket"
+MAX_RESULTS = 25
+BASE_URL = "https://www.youtube.com/watch?v="
+
 
 # CELERY STUFF
+CHECK_INTV = 1
 CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
-CHECK_INTV = 15
+CELERY_BEAT_SCHEDULE = {
+    "update_db_task": {
+        "task": "Fampay_Backend_Assignment.celery.update_db",
+        "schedule": crontab(minute=f"*/{CHECK_INTV}"),
+    },
+}
