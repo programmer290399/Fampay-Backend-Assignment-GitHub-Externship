@@ -1,21 +1,20 @@
 # Fampay-Backend-Assignment-GitHub-Externship
 
 ## Problem Statement:
-<hr>
 <details>
   <summary>Click to expand!</summary>
 
 ### Basic Requirements:
 
-- [ ] Server should call the YouTube API continuously in background (async) with some interval (say 10 seconds) for fetching the latest videos for a predefined search query and should store the data of videos (specifically these fields - Video title, description, publishing datetime, thumbnails URLs and any other fields you require) in a database with proper indexes.
+- [x] Server should call the YouTube API continuously in background (async) with some interval (say 10 seconds) for fetching the latest videos for a predefined search query and should store the data of videos (specifically these fields - Video title, description, publishing datetime, thumbnails URLs and any other fields you require) in a database with proper indexes.
 
-- [ ] A GET API which returns the stored video data in a paginated response sorted in descending order of published datetime.
+- [x] A GET API which returns the stored video data in a paginated response sorted in descending order of published datetime.
 
-- [ ] It should be scalable and optimized.
+- [x] It should be scalable and optimized.
 
 ### Bonus Points:
 
-- [ ] Add support for supplying multiple API keys so that if quota is exhausted on one, it automatically uses the next available key.
+- [x] Add support for supplying multiple API keys so that if quota is exhausted on one, it automatically uses the next available key.
 
 - [ ] Make a dashboard to view the stored videos with filters and sorting options (optional)
 
@@ -33,7 +32,6 @@
 * To fetch the latest videos you need to specify these: ```type=video, order=date, publishedAfter=<SOME_DATE_TIME>```
 Without publishedAfter, it will give you cached results which will be too old
 </details>
-<hr>
 
 
 ## How to Setup:
