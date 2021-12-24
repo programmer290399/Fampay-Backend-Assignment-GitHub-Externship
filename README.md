@@ -46,12 +46,14 @@ Without publishedAfter, it will give you cached results which will be too old
   $ git checkout docker-branch
   # Change permission on entrypoint.sh
   $ chmod  775 Fampay_Backend_Assignment/entrypoint.sh
-  # Spin up the container 
+  # Spin up the container, after adding appropriate API key 
+  # Related information in the docker-compose.yml
   $ docker-compose up -d --build
   # The server should be up on port 8000, API usage same as shown below 
   ```
 
 * Incase you have problems running due to ports and stuff already in use, try running the script `docker_fresh_start.sh`, be careful while using it as it will kill and remove all other containers as well and thus might lead to loss of your work.
+
 
 * You can watch logs of `celery`, `redis` & `celery-beat` by using the following command:
   ```bash
