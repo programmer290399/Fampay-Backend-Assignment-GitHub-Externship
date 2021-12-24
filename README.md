@@ -34,6 +34,15 @@ Without publishedAfter, it will give you cached results which will be too old
 </details>
 
 
+## How it Works
+
+![img](https://github.com/programmer290399/Fampay-Backend-Assignment-GitHub-Externship/raw/docker-branch/images/main-architecture.png)
+
+* When a client requests data from django, using our REST API, we read the DB for latest data and send back a paginated JSON response.
+* In the background, in django we have scheduled a periodic task which is send to Redis and Celery can read that task from it.
+* Celery goes and asynchronously hits the YouTube Data API to fetch new videos released after the last hit. 
+* The response received is stored by celery in the DB. 
+
 ## How to Setup:
 
 ### Using Docker (Recommended):
