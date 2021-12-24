@@ -14,7 +14,7 @@ services:
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
       - NUM_KEYS=<Number of keys you want to use>
       - API_KEY_1=<Your first API Key>
-      - API_KEY_2=AIzaSyC6hMyHvxnuXXF1Qh68BVGm-1Xp6dA4mmA
+      - API_KEY_2=<Your Second API Key>
     depends_on:
       - redis
   redis:
