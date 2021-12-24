@@ -36,6 +36,27 @@ Without publishedAfter, it will give you cached results which will be too old
 
 ## How to Setup:
 
+### Using Docker (Recommended):
+
+```bash
+  # Clone the repository
+  $ git clone git@github.com:programmer290399/Fampay-Backend-Assignment-GitHub-Externship.git
+  $ cd Fampay-Backend-Assignment-GitHub-Externship/
+  # Checkout to docker branch
+  $ git checkout docker-branch
+  # Change permission on entrypoint.sh
+  $ chmod  775 Fampay_Backend_Assignment/entrypoint.sh
+  # Spin up the container 
+  $ docker-compose up -d --build
+  # The server should be up on port 8000, API usage same as shown below 
+  ```
+
+* Incase you have problems running due to ports and stuff already in use, try running the script `docker_fresh_start.sh`, be careful while using it as it will kill and remove all other containers as well and thus might lead to loss of your work.
+
+* You can watch logs of `celery`, `redis` & `celery-beat` by using the following command:
+  ```bash
+  $ docker-compose logs -f '<service name here>'
+  ```
 ### Using Source:
 
 
@@ -82,24 +103,3 @@ Without publishedAfter, it will give you cached results which will be too old
   - **`CHECK_INTV`:** Interval at which we poll the YouTube API in minutes
   - **`REST_FRAMEWORK.PAGE_SIZE`:** The size of the paginated response 
 
-### Using Docker (Recommended):
-
-```bash
-  # Clone the repository
-  $ git clone git@github.com:programmer290399/Fampay-Backend-Assignment-GitHub-Externship.git
-  $ cd Fampay-Backend-Assignment-GitHub-Externship/
-  # Checkout to docker branch
-  $ git checkout docker-branch
-  # Change permission on entrypoint.sh
-  $ chmod  775 Fampay_Backend_Assignment/entrypoint.sh
-  # Spin up the container 
-  $ docker-compose up -d --build
-  # The server should be up on port 8000, same as above
-  ```
-
-* Incase you have problems running due to ports and stuff already in use, try running the script `docker_fresh_start.sh`, be careful while using it as it will kill and remove all other containers as well and thus might lead to loss of your work.
-
-* You can watch logs of `celery`, `redis` & `celery-beat` by using the following command:
-  ```bash
-  $ docker-compose logs -f '<service name here>'
-  ```
