@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./Fampay_Backend_Assignment
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./Fampay_Backend_Assignment/:/usr/src/app/
+    ports:
+      - 8000:8000
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=django-insecure-y8k%bg29xbx$$5u4vzey$$z%y6%i#h@58k*$$+=037+)_+cmh7d4&
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      - NUM_KEYS=<Number of keys you want to use>
+      - API_KEY_1=<Your first API Key>
+      - API_KEY_2=AIzaSyC6hMyHvxnuXXF1Qh68BVGm-1Xp6dA4mmA
+    depends_on:
+      - redis
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+  celery:
+    build: ./Fampay_Backend_Assignment
+    command: celery -A Fampay_Backend_Assignment worker --loglevel=info
+    volumes:
+      - ./Fampay_Backend_Assignment/:/usr/src/app/
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=django-insecure-y8k%bg29xbx$$5u4vzey$$z%y6%i#h@58k*$$+=037+)_+cmh7d4&
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      - NUM_KEYS=<Number of keys you want to use>
+      - API_KEY_1=<Your first API Key>
+      - API_KEY_2=<Yout second API Key>
+    depends_on:
+      - redis
+  celery-beat:
+    build: ./Fampay_Backend_Assignment
+    command: celery -A Fampay_Backend_Assignment beat -l info
+    volumes:
+      - ./Fampay_Backend_Assignment/:/usr/src/app/
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=django-insecure-y8k%bg29xbx$$5u4vzey$$z%y6%i#h@58k*$$+=037+)_+cmh7d4&
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      - NUM_KEYS=<Number of keys you want to use>
+      - API_KEY_1=<Your first API Key>
+      - API_KEY_2=<Yout second API Key>
+    depends_on:
+      - redis
